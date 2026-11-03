@@ -199,23 +199,8 @@ button:disabled { cursor: default; }
 .product__price { margin-top: 8px; }
 .product__payout { margin-top: 4px; color: var(--green); }
 
-/* Actions use the UI Kit Button (ds/button.css, copied unchanged from design-system); only their stacking lives here.
-   .btn below remains for the destructive "Снять с продажи", which has no UI Kit variant. */
+/* All page buttons are the UI Kit Button (ds/button.css, copied unchanged from design-system); only their stacking lives here. */
 .actions { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 36px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
-  transition: transform 0.16s var(--ease), background-color 0.16s;
-}
-.btn:active { transform: scale(0.98); }
 
 /* ---------- Status timeline: structure, colours and pulse from the web overlay (request-timeline), geometry tightened ---------- */
 .status { margin-top: 24px; }
@@ -276,10 +261,8 @@ button:disabled { cursor: default; }
   text-align: left;
 }
 
-/* ---------- End of page: "Снять с продажи" scrolls with the content (web overlay .seller-request-cancel) ---------- */
+/* ---------- End of page: "Снять с продажи" (UI Kit secondary Button) scrolls with the content ---------- */
 .page-end { margin-top: 24px; }
-.btn--destructive { background: #f8f1ef; color: #8e443c; }
-.btn--destructive:active { background: #f3e8e4; }
 
 /* ---------- Alert ---------- */
 .alert-layer {
