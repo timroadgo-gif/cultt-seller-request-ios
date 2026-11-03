@@ -161,9 +161,9 @@ button:disabled { cursor: default; }
   margin: 0 auto;
   padding: calc(var(--safe-top) + var(--bar-h) + 4px) var(--gutter) calc(var(--safe-bottom) + 28px);
 }
-.large-title { font-size: 22px; font-weight: 500; line-height: 28px; letter-spacing: -0.01em; }
-.section-title { font-size: 17px; font-weight: 500; line-height: 22px; letter-spacing: -0.005em; }
-.meta { margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 16px; }
+.large-title { font-size: 18px; font-weight: 400; line-height: 24px; letter-spacing: -0.005em; }
+.section-title { font-size: 15px; font-weight: 500; line-height: 20px; }
+.meta { margin-top: 0; color: var(--muted); font-size: 12px; line-height: 16px; }
 
 .lot__id { display: flex; align-items: center; gap: 2px; }
 .icon-tap {
@@ -173,7 +173,7 @@ button:disabled { cursor: default; }
   flex: none;
   width: 44px;
   height: 44px;
-  margin: -6px -10px -6px 0;
+  margin: -10px -10px -10px 0;
   color: #292c29;
   border-radius: 50%;
 }
@@ -185,43 +185,43 @@ button:disabled { cursor: default; }
 .icon-tap--s { width: 32px; height: 32px; margin: -8px -8px -8px -4px; color: #727a73; }
 .icon-tap--s svg { width: 15px; height: 15px; }
 
-.product { display: grid; grid-template-columns: 84px minmax(0, 1fr); align-items: center; gap: 14px; margin-top: 18px; }
+.product { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: 12px; margin-top: 14px; }
 .product__image {
-  width: 84px;
-  height: 112px;
+  width: 72px;
+  height: 96px;
   object-fit: cover;
   background: #f8f8f7;
   border-radius: 3px; /* as in the web overlay */
 }
-.product__info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.product__info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .product__code { display: flex; align-items: center; gap: 4px; color: #727a73; font-size: 11px; line-height: 14px; }
-.product__title { margin-bottom: 3px; font-size: 15px; font-weight: 500; line-height: 20px; overflow-wrap: anywhere; }
-.product__price { font-size: 13px; line-height: 18px; }
-.product__payout { color: var(--green); font-size: 13px; font-weight: 500; line-height: 18px; }
+.product__title { margin-bottom: 2px; font-size: 13px; font-weight: 500; line-height: 18px; overflow-wrap: anywhere; }
+.product__price { font-size: 12px; line-height: 16px; }
+.product__payout { color: var(--green); font-size: 12px; font-weight: 500; line-height: 16px; }
 
-/* Buttons as in the web overlay (seller-request-edit-price / history-toggle): radius 6; refined to 44 / 36 high. */
-.actions { display: flex; flex-direction: column; gap: 6px; margin-top: 20px; }
+/* Buttons as in the web overlay (seller-request-edit-price / history-toggle): radius 6; compact 36 / 30 high. */
+.actions { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 44px;
-  padding: 10px 16px;
+  min-height: 36px;
+  padding: 8px 16px;
   border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 18px;
   transition: transform 0.16s var(--ease), background-color 0.16s;
 }
 .btn:active { transform: scale(0.98); }
 .btn--primary { background: var(--green); color: #fff; }
 .btn--primary:active { background: #214535; }
-.btn--secondary { min-height: 36px; padding: 8px 16px; background: #f2f5f4; color: var(--green); font-size: 13px; line-height: 18px; }
+.btn--secondary { min-height: 30px; padding: 6px 16px; background: #f2f5f4; color: var(--green); font-size: 12px; line-height: 16px; }
 .btn--secondary:active { background: #e8eeeb; }
 
 /* ---------- Status timeline: structure, colours and pulse from the web overlay (request-timeline), geometry tightened ---------- */
-.status { margin-top: 28px; }
+.status { margin-top: 24px; }
 .timeline { margin: 12px 0 0; padding: 0; list-style: none; }
 
 .stage { position: relative; display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 12px; min-height: 34px; }
@@ -280,7 +280,7 @@ button:disabled { cursor: default; }
 }
 
 /* ---------- End of page: "Снять с продажи" scrolls with the content (web overlay .seller-request-cancel) ---------- */
-.page-end { margin-top: 28px; }
+.page-end { margin-top: 24px; }
 .btn--destructive { background: #f8f1ef; color: #8e443c; }
 .btn--destructive:active { background: #f3e8e4; }
 
