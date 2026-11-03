@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data:; font-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'none'; form-action 'none'" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- Home Screen app: opens standalone (no Safari UI), white status bar with dark text, own name and icon. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="THE CULTT" />
+    <link rel="manifest" href="manifest.webmanifest?v=c398385a685f" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+    <meta name="description" content="THE CULTT — заявка на продажу, iOS-прототип" />
+    <title>THE CULTT — заявка 24647849</title>
+    <link rel="stylesheet" href="app.css?v=c398385a685f" />
+    <script type="module" src="app.js?v=c398385a685f"></script>
+    <meta name="build" content="c398385a685f" />
+  </head>
+  <body>
+    <!-- Navigation layer: floating Liquid Glass back button + inline title that appears once the large title scrolls away. -->
+    <header class="nav" id="nav">
+      <div class="nav__edge" aria-hidden="true"></div>
+      <div class="nav__bar">
+        <!-- Single-page prototype: the back button is shown but inactive. -->
+        <button class="glass-btn glass" type="button" id="back" aria-label="Вернуться" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 18L8.5 12L14.5 6" /></svg>
+        </button>
+        <p class="nav__title" id="navTitle" aria-hidden="true">Заявка № 24647849</p>
+        <span class="nav__spacer" aria-hidden="true"></span>
+      </div>
+    </header>
+
+    <main class="page" id="page">
+      <section class="lot" aria-labelledby="requestTitle">
+        <div class="lot__id">
+          <h1 class="large-title" id="requestTitle">Заявка № 24647849</h1>
+          <button class="icon-tap" type="button" id="copy" aria-label="Скопировать номер заявки">
+            <svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5" /><path d="M15.5 8.5V6.5A2 2 0 0 0 13.5 4.5H6.5A2 2 0 0 0 4.5 6.5V13.5A2 2 0 0 0 6.5 15.5H8.5" /></svg>
+            <svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 7.5L9.5 17L5 12.5" /></svg>
+          </button>
+        </div>
+        <p class="meta">Дата оформления: 26.06.2023</p>
+
+        <div class="product">
+          <img class="product__image" src="images/lot-alt.png" alt="Коричневая сумка Bottega Veneta" width="375" height="500" />
+          <div class="product__info">
+            <p class="product__code">
+              <span>Код лота: BV-928471</span>
+              <button class="icon-tap icon-tap--s" type="button" data-disabled aria-label="Редактировать код лота">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19H8.5L18.2 9.3A2.3 2.3 0 0 0 14.7 5.8L5 15.5V19Z" /><path d="M13.5 7L17 10.5" /></svg>
+              </button>
+            </p>
+            <h2 class="product__title">Bottega Veneta Textile Bag</h2>
+            <p class="product__price">Стоимость: 80 000 ₽</p>
+            <p class="product__payout">Вы получите: 70 000 ₽</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--primary" type="button" data-disabled>Изменить стоимость</button>
+          <button class="btn btn--secondary" type="button" data-disabled>История изменений</button>
+        </div>
+      </section>
+
+      <section class="status" aria-labelledby="statusTitle">
+        <div class="status__head">
+          <h2 class="section-title" id="statusTitle">Статус</h2>
+          <p class="meta">Статус обновлён: 12.03.2025 13:30</p>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+        <button class="prototype-step" type="button" id="restore" hidden>Вернуть предыдущий статус</button>
+      </section>
+
+      <!-- Last element of the page, not fixed (as in the web overlay). -->
+      <div class="page-end" id="toolbar">
+        <button class="btn btn--destructive" type="button" id="cancel">Снять с продажи</button>
+      </div>
+    </main>
+
+    <div class="alert-layer" id="alert" hidden>
+      <section class="alert" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle" aria-describedby="alertText">
+        <h2 id="alertTitle">Снять лот с продажи?</h2>
+        <p id="alertText">Заявка останется в кабинете, а продажа будет приостановлена.</p>
+        <div class="alert__actions">
+          <button class="alert__btn" type="button" id="alertKeep">Оставить</button>
+          <button class="alert__btn alert__btn--destructive" type="button" id="alertConfirm">Снять с продажи</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
