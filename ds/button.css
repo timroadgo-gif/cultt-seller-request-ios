@@ -1,0 +1,117 @@
+/* Button. Contract: docs in spec.md. All values come from tokens/tokens.css; no literals except 0.
+   API is data attributes: data-variant, data-size, data-width, data-icon-position, data-state. */
+
+.ds-button {
+  /* Size scope: add a new [data-size] block below to introduce a size; nothing else changes. */
+  --_height: var(--button-size-large-height);
+  --_pad: var(--button-size-large-padding-inline);
+  --_pad-icon-only: var(--button-size-large-padding-inline-icon-only);
+  --corner-radius: var(--button-size-large-radius); /* semantic radius; geometry comes from css/corners.css */
+  --_icon: var(--button-size-large-icon-size);
+  --_gap: var(--button-size-large-icon-gap);
+  --_fs: var(--button-size-large-font-size);
+  --_lh: var(--button-size-large-font-line-height);
+  --_fw: var(--button-size-large-font-weight);
+  --_ls: var(--button-size-large-font-letter-spacing);
+
+  /* Variant + state scope: colours only. */
+  --_bg: var(--color-action-primary-background-default);
+  --_fg: var(--color-action-primary-foreground-default);
+
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center; /* label is trimmed to its cap-height box, so this centres icon and capitals on one axis */
+  justify-content: center;
+  gap: var(--_gap);
+  height: var(--_height);
+  margin: 0;
+  padding: 0 var(--_pad);
+  border: 0;
+  background: var(--_bg);
+  color: var(--_fg);
+  font: var(--_fw) var(--_fs) / var(--_lh) var(--font-family-sans);
+  letter-spacing: var(--_ls);
+  white-space: nowrap;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-standard),
+    color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+/* Variant */
+.ds-button[data-variant="secondary"] {
+  --_bg: var(--color-action-secondary-background-default);
+  --_fg: var(--color-action-secondary-foreground-default);
+}
+
+/* Width: hug = intrinsic content + padding, fill = parent's available width. Height/type/radius identical. */
+.ds-button[data-width="hug"] { display: inline-flex; }
+.ds-button[data-width="fill"] { display: flex; width: 100%; }
+
+/* Content: icon box and label are siblings in one row; the icon-only footprint is icon + 2 × compact padding (Figma: 56 wide). */
+.ds-button[data-icon-position="only"] { padding-inline: var(--_pad-icon-only); }
+.ds-button__icon { flex: none; display: block; width: var(--_icon); height: var(--_icon); }
+.ds-button__icon svg { display: block; width: 100%; height: 100%; }
+.ds-button[data-icon-position="leading"] .ds-button__icon { order: -1; }
+.ds-button[data-icon-position="trailing"] .ds-button__icon { order: 1; }
+
+/* Optical alignment: the label's box is cut to cap-height..baseline, so its midline is the capital letters' midline. */
+.ds-button__label { display: block; text-box: trim-both cap alphabetic; }
+@supports not (text-box: trim-both cap alphabetic) {
+  .ds-button__label { transform: translateY(calc(-1 * var(--font-optical-cap-center-offset))); }
+}
+
+/* States */
+.ds-button[data-state="pressed"],
+.ds-button:not([data-state="disabled"]):not([data-state="loading"]):active {
+  --_bg: var(--color-action-primary-background-pressed);
+  --_fg: var(--color-action-primary-foreground-pressed);
+}
+.ds-button[data-variant="secondary"][data-state="pressed"],
+.ds-button[data-variant="secondary"]:not([data-state="disabled"]):not([data-state="loading"]):active {
+  --_bg: var(--color-action-secondary-background-pressed);
+  --_fg: var(--color-action-secondary-foreground-pressed);
+}
+
+.ds-button[data-state="disabled"] {
+  --_bg: var(--color-action-primary-background-disabled);
+  --_fg: var(--color-action-primary-foreground-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+.ds-button[data-variant="secondary"][data-state="disabled"] {
+  --_bg: var(--color-action-secondary-background-disabled);
+  --_fg: var(--color-action-secondary-foreground-disabled);
+}
+
+/* Loading: keeps default colours and exact footprint; content is hidden, a spinner sits on the same centre. */
+.ds-button[data-state="loading"] { cursor: default; pointer-events: none; }
+.ds-button[data-state="loading"] > :not(.ds-button__spinner) { visibility: hidden; }
+.ds-button__spinner {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  box-sizing: border-box;
+  width: var(--_icon);
+  height: var(--_icon);
+  margin: calc(var(--_icon) / -2) 0 0 calc(var(--_icon) / -2);
+  border: var(--button-loading-spinner-stroke) solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ds-button-spin 0.8s linear infinite;
+}
+@keyframes ds-button-spin { to { transform: rotate(360deg); } }
+
+.ds-button:focus-visible {
+  outline: var(--button-focus-ring-width) solid var(--color-green-7);
+  outline-offset: var(--button-focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-button { transition: none; }
+  .ds-button__spinner { animation-duration: 2.4s; }
+}

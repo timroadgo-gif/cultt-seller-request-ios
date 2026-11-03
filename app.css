@@ -2,9 +2,9 @@
    (back button). The glass material is the shared IOS:UI Agent design-system GlassSurface
    (css/glass.css, tokens glass.light.*), vendored here because this project has no access to that package. */
 
-@font-face { font-family: "Cultt Manrope"; src: url("fonts/manrope-400.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Cultt Manrope"; src: url("fonts/manrope-500.ttf") format("truetype"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Cultt Manrope"; src: url("fonts/manrope-600.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("fonts/manrope-400.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("fonts/manrope-500.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("fonts/manrope-600.ttf") format("truetype"); font-weight: 600; font-display: swap; }
 
 :root {
   --green: #285141;
@@ -42,7 +42,7 @@ body {
   min-height: 100dvh;
   background: #fff;
   color: var(--ink);
-  font: 400 15px/20px "Cultt Manrope", Manrope, -apple-system, sans-serif;
+  font: 400 15px/20px Manrope, -apple-system, sans-serif;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -182,8 +182,6 @@ button:disabled { cursor: default; }
 .icon-tap.is-done .i-copy { opacity: 0; transform: scale(0.6); }
 .icon-tap.is-done .i-check { opacity: 1; transform: none; }
 .icon-tap:active { background: rgb(0 0 0 / 0.05); }
-.icon-tap--s { width: 32px; height: 32px; margin: -8px -8px -8px -4px; color: #727a73; }
-.icon-tap--s svg { width: 14px; height: 14px; stroke-width: 1.2; }
 
 .product { display: grid; grid-template-columns: 84px minmax(0, 1fr); align-items: center; gap: 16px; margin-top: 14px; }
 .product__image {
@@ -193,15 +191,17 @@ button:disabled { cursor: default; }
   background: #f8f8f7;
   border-radius: 3px; /* as in the web overlay */
 }
-/* Summary rhythm: code → name 6, name → price 8, price → payout 4. Regular weight only; the name is the anchor. */
+/* Summary rhythm: name → price 8, price → payout 4. Regular weight only; the name is the anchor, price and payout share one style. */
 .product__info { display: flex; flex-direction: column; min-width: 0; }
-.product__code { display: flex; align-items: center; gap: 4px; color: #727a73; font-size: 12px; font-weight: 400; line-height: 16px; }
-.product__title { margin-top: 6px; font-size: 16px; font-weight: 400; line-height: 22px; overflow-wrap: anywhere; }
-.product__price { margin-top: 8px; font-size: 14px; font-weight: 400; line-height: 20px; }
-.product__payout { margin-top: 4px; color: var(--green); font-size: 14px; font-weight: 400; line-height: 20px; }
+.product__title { font-size: 17px; font-weight: 400; line-height: 22px; overflow-wrap: anywhere; }
+.product__price,
+.product__payout { font-size: 13px; font-weight: 400; line-height: 18px; }
+.product__price { margin-top: 8px; }
+.product__payout { margin-top: 4px; color: var(--green); }
 
-/* Buttons as in the web overlay (seller-request-edit-price / history-toggle): radius 6; compact 36 / 30 high. */
-.actions { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
+/* Actions use the UI Kit Button (ds/button.css, copied unchanged from design-system); only their stacking lives here.
+   .btn below remains for the destructive "Снять с продажи", which has no UI Kit variant. */
+.actions { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
 .btn {
   display: flex;
   align-items: center;
@@ -216,10 +216,6 @@ button:disabled { cursor: default; }
   transition: transform 0.16s var(--ease), background-color 0.16s;
 }
 .btn:active { transform: scale(0.98); }
-.btn--primary { background: var(--green); color: #fff; }
-.btn--primary:active { background: #214535; }
-.btn--secondary { min-height: 30px; padding: 6px 16px; background: #f2f5f4; color: var(--green); font-size: 12px; line-height: 16px; }
-.btn--secondary:active { background: #e8eeeb; }
 
 /* ---------- Status timeline: structure, colours and pulse from the web overlay (request-timeline), geometry tightened ---------- */
 .status { margin-top: 24px; }

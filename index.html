@@ -12,14 +12,17 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="THE CULTT" />
-    <link rel="manifest" href="manifest.webmanifest?v=5dfa1c192299" />
+    <link rel="manifest" href="manifest.webmanifest?v=2b70fcd56565" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
     <meta name="description" content="THE CULTT — заявка на продажу, iOS-прототип" />
     <title>THE CULTT — заявка 24647849</title>
-    <link rel="stylesheet" href="app.css?v=5dfa1c192299" />
-    <script type="module" src="app.js?v=5dfa1c192299"></script>
-    <meta name="build" content="5dfa1c192299" />
+    <link rel="stylesheet" href="ds/tokens.css?v=2b70fcd56565" />
+    <link rel="stylesheet" href="ds/corners.css?v=2b70fcd56565" />
+    <link rel="stylesheet" href="ds/button.css?v=2b70fcd56565" />
+    <link rel="stylesheet" href="app.css?v=2b70fcd56565" />
+    <script type="module" src="app.js?v=2b70fcd56565"></script>
+    <meta name="build" content="2b70fcd56565" />
   </head>
   <body>
     <!-- Navigation layer: floating Liquid Glass back button + inline title that appears once the large title scrolls away. -->
@@ -49,12 +52,6 @@
         <div class="product">
           <img class="product__image" src="images/lot-alt.png" alt="Коричневая сумка Bottega Veneta" width="375" height="500" />
           <div class="product__info">
-            <p class="product__code">
-              <span>Код лота: BV-928471</span>
-              <button class="icon-tap icon-tap--s" type="button" data-disabled aria-label="Редактировать код лота">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19H8.5L18.2 9.3A2.3 2.3 0 0 0 14.7 5.8L5 15.5V19Z" /><path d="M13.5 7L17 10.5" /></svg>
-              </button>
-            </p>
             <h2 class="product__title">Bottega Veneta Textile Bag</h2>
             <p class="product__price">Стоимость: 80 000 ₽</p>
             <p class="product__payout">Вы получите: 70 000 ₽</p>
@@ -62,8 +59,9 @@
         </div>
 
         <div class="actions">
-          <button class="btn btn--primary" type="button" data-disabled>Изменить стоимость</button>
-          <button class="btn btn--secondary" type="button" data-disabled>История изменений</button>
+          <!-- UI Kit Button (design-system components/button): DOM contract of createButton({ variant, width: "fill" }) -->
+          <button class="ds-button ds-corner" type="button" data-variant="primary" data-size="large" data-width="fill" data-icon-position="none" data-state="default" data-disabled><span class="ds-button__label">Изменить стоимость</span></button>
+          <button class="ds-button ds-corner" type="button" data-variant="secondary" data-size="large" data-width="fill" data-icon-position="none" data-state="default" data-disabled><span class="ds-button__label">История изменений</span></button>
         </div>
       </section>
 

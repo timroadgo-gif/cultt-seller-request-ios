@@ -1,0 +1,24 @@
+/* Shared corner geometry — the ONLY place continuous corners are implemented.
+   Contract: an element declares its design radius with --corner-radius (a semantic token such as
+   var(--button-size-large-radius)) and gets class "ds-corner". Shape defaults to continuous.
+   Exceptions: data-corner="circular" | "sharp" (approved cases only). Never write border-radius by hand. */
+
+.ds-corner {
+  --_radius: var(--corner-radius, 0px);
+  border-radius: var(--_radius); /* fallback without corner-shape: plain circular design radius */
+}
+
+@supports (corner-shape: superellipse(2)) {
+  .ds-corner {
+    /* Apple's continuous curve spans 1.5287 × the design radius along each edge */
+    border-radius: calc(var(--_radius) * var(--corner-continuous-extent));
+    corner-shape: var(--corner-shape-default);
+  }
+  .ds-corner[data-corner="circular"] { border-radius: var(--_radius); corner-shape: var(--corner-shape-circular); }
+  .ds-corner[data-corner="sharp"] { border-radius: 0; corner-shape: var(--corner-shape-sharp); }
+}
+@supports not (corner-shape: superellipse(2)) {
+  .ds-corner[data-corner="sharp"] { border-radius: 0; }
+}
+/* Edge-attached surfaces (e.g. a full-width bottom sheet): round only the top corners, keep the shape. */
+.ds-corner[data-corner-edges="top"] { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
