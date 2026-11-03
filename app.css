@@ -183,21 +183,22 @@ button:disabled { cursor: default; }
 .icon-tap.is-done .i-check { opacity: 1; transform: none; }
 .icon-tap:active { background: rgb(0 0 0 / 0.05); }
 .icon-tap--s { width: 32px; height: 32px; margin: -8px -8px -8px -4px; color: #727a73; }
-.icon-tap--s svg { width: 15px; height: 15px; }
+.icon-tap--s svg { width: 14px; height: 14px; stroke-width: 1.2; }
 
-.product { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: 12px; margin-top: 14px; }
+.product { display: grid; grid-template-columns: 84px minmax(0, 1fr); align-items: center; gap: 16px; margin-top: 14px; }
 .product__image {
-  width: 72px;
-  height: 96px;
+  width: 84px;
+  height: 112px;
   object-fit: cover;
   background: #f8f8f7;
   border-radius: 3px; /* as in the web overlay */
 }
-.product__info { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.product__code { display: flex; align-items: center; gap: 4px; color: #727a73; font-size: 11px; line-height: 14px; }
-.product__title { margin-bottom: 2px; font-size: 13px; font-weight: 500; line-height: 18px; overflow-wrap: anywhere; }
-.product__price { font-size: 12px; line-height: 16px; }
-.product__payout { color: var(--green); font-size: 12px; font-weight: 500; line-height: 16px; }
+/* Summary rhythm: code → name 6, name → price 8, price → payout 4. Regular weight only; the name is the anchor. */
+.product__info { display: flex; flex-direction: column; min-width: 0; }
+.product__code { display: flex; align-items: center; gap: 4px; color: #727a73; font-size: 12px; font-weight: 400; line-height: 16px; }
+.product__title { margin-top: 6px; font-size: 16px; font-weight: 400; line-height: 22px; overflow-wrap: anywhere; }
+.product__price { margin-top: 8px; font-size: 14px; font-weight: 400; line-height: 20px; }
+.product__payout { margin-top: 4px; color: var(--green); font-size: 14px; font-weight: 400; line-height: 20px; }
 
 /* Buttons as in the web overlay (seller-request-edit-price / history-toggle): radius 6; compact 36 / 30 high. */
 .actions { display: flex; flex-direction: column; gap: 4px; margin-top: 14px; }
